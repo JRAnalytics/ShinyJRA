@@ -31,6 +31,14 @@ FC_HeatmapUI = function(id){
                 uiOutput(ns("FCthresold")),
                 uiOutput(ns("FCpval")),
                 uiOutput(ns("HMAsel")),
+                h4("Samples sub selection."),
+                awesomeCheckbox(ns("Wrap.FC"),"Samples sub selection ?"),
+
+                uiOutput(ns("Wrap.Gpe.Sub")),
+
+                uiOutput(ns("group.wrap.FC" )),
+                br(),
+                tags$h4("HM decoration"),
                 awesomeCheckbox(ns("HM.Colnames"), "Show samples names?"),
                 awesomeCheckbox(ns("HM.Rownames"), "Show genes names?"),
                 awesomeCheckbox(ns("HM.Gras"), "Bold text?"),
@@ -41,12 +49,7 @@ FC_HeatmapUI = function(id){
                 textAreaInput(ns("HM.hauteure"), h5("Height (cm)"),"20"),
                 textAreaInput(ns("HM.largeure"), h5("Width (cm)"),"20"),
 
-                h4("Samples sub selection."),
-                awesomeCheckbox(ns("Wrap.FC"),"Samples sub selection ?"),
 
-                uiOutput(ns("Wrap.Gpe.Sub")),
-
-                uiOutput(ns("group.wrap.FC" )),
                 downloadButton(ns("downloadFC"), "Export Plots"),
 
 
@@ -220,14 +223,22 @@ FC_HeatmapServer = function(id, project, DF, Pheno, FC.geneCol) {
         if(is.null(Wrap.Gpe.FC)){Wrap.Gpe.FC <- colnames(Pheno)[1]}
 
         wrap <- which(colnames(Pheno)%in%Wrap.Gpe.FC)
+        print("ok0")
+        print(wrap)
+
         Pheno <- tidyr::unite(Pheno, Gpe, wrap)
+        print("ok1")
+        print(head(Pheno))
 
         Sub.FC <- as.character(input$Sub.FC)
 
+        print("ok3")
+        print(Sub.FC)
 
         if(is.null(Sub.FC)){ Sub.FC <-  unique(colnames(Pheno)[1])[1]}
 
-        Sub..samples.FC <- rownames(Pheno[which(Pheno$Gpe%in%Sub.FC),])
+
+        Sub..samples.FC <- rownames(Pheno)[which(Pheno$Gpe%in%Sub.FC)]
 
 
         return(as.character(Sub..samples.FC))}})

@@ -251,7 +251,7 @@ GSEA_HeatmapServer = function(id, project, DF, Pheno) {
 
         if(is.null(Sub.GSEA)){ Sub.GSEA <-  unique(colnames(Pheno)[1])[1]}
 
-        Sub..samples.GSEA <- rownames(Pheno[which(Pheno$Gpe%in%Sub.GSEA),])
+        Sub..samples.GSEA <- rownames(Pheno)[which(Pheno$Gpe%in%Sub.GSEA)]
 
 
         return(as.character(Sub..samples.GSEA))}})

@@ -126,7 +126,7 @@ FC_HeatmapServer = function(id, project, DF, Pheno, FC.geneCol) {
       FC.df <- FC.df()
       return(sliderInput(ns("FCT"),label="Log2 Fold change threshold :",
                          min = 0,
-                         max = round(max(FC.df[,"log2FoldChange"]), digits = 1),
+                         max = round(max(FC.df[,"log2FoldChange"]), digits = 2),
                          value = 2))
 })
 

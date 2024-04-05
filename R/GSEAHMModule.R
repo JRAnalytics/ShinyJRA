@@ -362,7 +362,7 @@ GSEA_HeatmapServer = function(id, project, DF, Pheno) {
 
           if(input$HM.Rownames==T){
             ll = length(gene.list[[i]])
-            if(ll<5) { ll = 5}
+            if(ll<5) { ll = 6}
             HM.hauteure <- as.numeric(10)*ll/15
 
 
@@ -382,7 +382,7 @@ GSEA_HeatmapServer = function(id, project, DF, Pheno) {
 
           if(input$HM.Rownames==T){
             ll = length(gene.list[[i]])
-            if(ll<5) { ll = 5}
+            if(ll<5) { ll = 10}
             HM.hauteure <- as.numeric(10)*ll/15
 
 
